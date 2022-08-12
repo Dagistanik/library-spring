@@ -9,17 +9,13 @@ import java.sql.*;
 import java.util.*;
 
 public class Library {
-
     private static final String URL = "jdbc:mysql://localhost:3306/bms";
     private static final String USERNAME = "root";
     private static final String PASSWORD = "0950";
     private static Library INSTANCE;
     private static final int MAXBOOKS = 20;
-
-
     protected  List <Publication> publications;
     protected Map <Integer, Publication> publicationsMap;
-
     public Library(int maxBooks) {
         int id = 1;
         publications = new LinkedList<>();
@@ -178,7 +174,6 @@ public class Library {
         publications.remove(p);
         publicationsMap.remove(id);
     }
-
     public synchronized static Library getInstance() {
         if (INSTANCE == null) {
             INSTANCE = new Library(MAXBOOKS);
@@ -187,25 +182,24 @@ public class Library {
     }
 
     public static void main(String[] args) {
-        Library l = Library.getInstance();
-        List<Book> booksList = l.getBooks();
-
-        System.out.println("Test");
-
-        System.out.print(StringUtils.rightPad("ID", 10, ""));
-        System.out.print(StringUtils.rightPad("TITLE", 12, ""));
-        System.out.print(StringUtils.rightPad("AUTHOR", 15, ""));
-        System.out.print(StringUtils.rightPad("YEAR", 10, ""));
-        System.out.println(StringUtils.rightPad("PAGE", 15, ""));
-
-        for (Book publication : booksList){
-            System.out.print(StringUtils.rightPad(String.valueOf(publication.getId()), 10, ""));
-            System.out.print(StringUtils.rightPad(String.valueOf(publication.getTitle()), 12, ""));
-            System.out.print(StringUtils.rightPad(String.valueOf(publication.getAuthor()), 15, ""));
-            System.out.print(StringUtils.rightPad(String.valueOf(publication.getYear()), 10, ""));
-            System.out.println(StringUtils.rightPad(String.valueOf(publication.getNumberOfPage()), 15, ""));
-        }
-
+//        Library l = Library.getInstance();
+//        List<Book> booksList = l.getBooks();
+//
+//        System.out.println("Test");
+//
+//        System.out.print(StringUtils.rightPad("ID", 10, ""));
+//        System.out.print(StringUtils.rightPad("TITLE", 12, ""));
+//        System.out.print(StringUtils.rightPad("AUTHOR", 15, ""));
+//        System.out.print(StringUtils.rightPad("YEAR", 10, ""));
+//        System.out.println(StringUtils.rightPad("PAGE", 15, ""));
+//
+//        for (Book publication : booksList){
+//            System.out.print(StringUtils.rightPad(String.valueOf(publication.getId()), 10, ""));
+//            System.out.print(StringUtils.rightPad(String.valueOf(publication.getTitle()), 12, ""));
+//            System.out.print(StringUtils.rightPad(String.valueOf(publication.getAuthor()), 15, ""));
+//            System.out.print(StringUtils.rightPad(String.valueOf(publication.getYear()), 10, ""));
+//            System.out.println(StringUtils.rightPad(String.valueOf(publication.getNumberOfPage()), 15, ""));
+//        }
         Connection connection;
         try {
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
@@ -230,45 +224,10 @@ public class Library {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-            DVD periodical = new DVD(12, "sdvf", 342);
-        System.out.println(periodical.getClass().getSimpleName());
-//        Videogame g1 = new Videogame(111,"X-Com",3_000_000);
-//        l.add(g1);
-
-//        Videogame g2 = (Videogame) l.findById(11);
-//        System.out.println("Books       : " + l.getBooks());
-//        System.out.println("Periodicals : " + l.getPeriodicals());
-//        System.out.println("Journals    : " + l.getJournals());
-//        System.out.println("Newspaper   : " + l.getNewpapers());
-//        System.out.println("DVDs        : " + l.getDvds());
-//        System.out.println("Audiobooks  : " + l.getAudiobooks());
-//        System.out.println("Videogames  : " + l.getVideogames());
-//        System.out.println(l.getBook(3));
-//
-//        try {
-//            l.getBook(3);
-//        } catch (LibraryException e){
-//            System.out.println(e);
-//        }
-//
-//        try {
-//            l.getDVD(111);
-//        } catch (LibraryException e) {
-//            System.out.println(e);
-//        }
-//
-//        try {
-//            l.getPeriodical(3);
-//        } catch (LibraryException e) {
-//            System.out.println(e);
-//        }
-//        for (int i = 0; i < 12; i++) {
-//            System.out.println(Enums.random(MothsOfYear.class));
-////
-//        }
-
-
     }
 
+    public int size() {
+        return Library.getInstance().size();
+    }
 }
 

@@ -11,7 +11,7 @@ public enum MothsOfYear {
     AUGUST("August"),
     SEPTEMBER("September"),
     OCTOBER("October"),
-    NOVEMBER("november"),
+    NOVEMBER("November"),
     DECEMBER ("December");
 //
     private String title;

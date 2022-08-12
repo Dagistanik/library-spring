@@ -5,10 +5,11 @@ import java.sql.SQLException;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+
 import com.library.model.DBConnConfig;
 import com.library.util.DBMangerUtil;
 
-public class ServletContextListener implements ServletContextListener {
+public class LibraryContextListener implements ServletContextListener {
     Connection conn = null;
 
     // Инициализация контекста
@@ -32,7 +33,7 @@ public class ServletContextListener implements ServletContextListener {
     }
 
     // Уничтожение контекста
-    private void contextDestroyed(ServletContextEvent event){
+    public void contextDestroyed(ServletContextEvent event){
         try{
             // Закрыть соединение с БД
             DBMangerUtil.close();
