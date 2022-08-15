@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="com.library.project.products.Book" %>
-<%@ page import="com.library.project.Library" %>
+<%@ page import="com.danik.bookstore.model.Book" %>
+<%@ page import="com.danik.project.Library" %>
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 

@@ -104,7 +104,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>libs</classpathPrefix>
-                            <mainClass>com.library.SpringBootJspApplication</mainClass>
+                            <mainClass>com.danik.bookstore.SpringBootJspApplication</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -131,6 +131,6 @@
 
     <!-- слушатель ServletContext -->
     <listener>
-        <listener-class>com.library.listener.LibraryContextListener</listener-class>
+        <listener-class>com.danik.listener.LibraryContextListener</listener-class>
     </listener>
 </project>
