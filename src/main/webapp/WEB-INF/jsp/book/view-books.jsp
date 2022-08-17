@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8"%>
-
+<%--@elvariable id="books" type="java.util.List<com.danik.bookstore.model.BookWithAuthor>"--%>
 <html>
     <head>
         <title>Books</title>
@@ -9,6 +9,16 @@
     <body>
         <h3 class="text-red text-center">Books</h3>
         <div class="d-grid gap-2 col-8 mx-auto">
+            <div class="d-grid col-4 ">
+<%--                <form action="search" method="get">--%>
+                <form  method="get">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Search by title:</label>
+                        <input type="text" class="form-control" name="title" id="title" value="${title}"/>
+                    </div>
+                    <button type="submit" class="btn btn-success">Search</button>
+                </form>
+            </div>
             <table class="table table-hover">
                 <thead class="table-light">
                     <tr>
@@ -20,13 +30,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${books}" var="book">
+                <c:forEach items="${books}" var="bookWithAuthor">
                     <tr>
-                        <th scope="row">${book.id}</th>
-                        <td>${book.title}</td>
-                        <td>${book.author}</td>
-                        <td>${book.year}</td>
-                        <td>${book.numberOfPage}</td>
+                        <th scope="row">${bookWithAuthor.book.id}</th>
+                        <td>${bookWithAuthor.book.title}</td>
+                        <td>
+                            <a href="/library/authors/${bookWithAuthor.author.id}">
+                                    ${bookWithAuthor.author.name}
+                            </a>
+                        </td>
+                        <td>${bookWithAuthor.book.year}</td>
+                        <td>${bookWithAuthor.book.numberOfPage}</td>
                     </tr>
                 </c:forEach>
                 </tbody>

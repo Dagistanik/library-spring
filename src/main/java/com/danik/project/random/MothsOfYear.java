@@ -1,7 +1,7 @@
 package com.danik.project.random;
 
 public enum MothsOfYear {
-    JANUARY ("January"),
+    JANUARY("January"),
     FEBRUARY("February"),
     MARCH("March"),
     APRIL("April"),
@@ -12,14 +12,13 @@ public enum MothsOfYear {
     SEPTEMBER("September"),
     OCTOBER("October"),
     NOVEMBER("November"),
-    DECEMBER ("December");
-//
+    DECEMBER("December");
+    //
     private String title;
 
     MothsOfYear(String title) {
         this.title = title;
     }
-
 
     public String getTitle() {
         return title;
