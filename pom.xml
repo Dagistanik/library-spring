@@ -127,26 +127,4 @@
             </plugin>
         </plugins>
     </build>
-
-    <context-param>
-        <param-name>driver</param-name>
-        <param-value>com.mysql.cj.jdbc.Driver</param-value>
-    </context-param>
-    <context-param>
-        <param-name>url</param-name>
-        <param-value>jdbc:mysql://localhost:3306/bms</param-value>
-    </context-param>
-    <context-param>
-        <param-name>username</param-name>
-        <param-value>root</param-value>
-    </context-param>
-    <context-param>
-        <param-name>password</param-name>
-        <param-value>0950</param-value>
-    </context-param>
-
-    <!-- слушатель ServletContext -->
-    <listener>
-        <listener-class>com.danik.listener.LibraryContextListener</listener-class>
-    </listener>
 </project>
