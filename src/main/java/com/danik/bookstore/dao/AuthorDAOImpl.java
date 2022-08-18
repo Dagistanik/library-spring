@@ -2,20 +2,25 @@ package com.danik.bookstore.dao;
 
 import com.danik.bookstore.config.ConnectionFactory;
 import com.danik.bookstore.model.*;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import javax.sql.DataSource;
 import java.sql.*;
 import java.util.*;
 import java.util.Date;
 
+@Component
 public class AuthorDAOImpl implements AuthorDAO{
+
+    @Resource
+    DataSource dataSource;
 
     @Override
     public Author getById(int authorId) {
-        DataSource ds = ConnectionFactory.getDataSource();
         String query = "select a.id, a.name, a.birth_date, a.country_code from authors a where a.id = ?";
 
-        try(Connection con = ds.getConnection();
+        try(Connection con = dataSource.getConnection();
             PreparedStatement st = con.prepareStatement(query)
         ){
             st.setInt(1, authorId);

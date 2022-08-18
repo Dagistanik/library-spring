@@ -1,5 +1,6 @@
 package com.danik.bookstore.config;
 
+import com.mysql.jdbc.Driver;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -15,7 +16,6 @@ public class Initializer implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         ConnectionFactory.setDataSource(dataSource);
-
         System.out.println("App initialized");
     }
 }

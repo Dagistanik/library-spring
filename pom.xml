@@ -87,6 +87,13 @@
             <artifactId>tomcat-jdbc</artifactId>
             <version>9.0.10</version>
         </dependency>
+        <!--тесты-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+            <version>2.4.4</version>
+        </dependency>
     </dependencies>
 
     <build>

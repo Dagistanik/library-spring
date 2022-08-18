@@ -1,18 +1,23 @@
 package com.danik.bookstore.controller;
 
+import com.danik.bookstore.dao.BookDAO;
 import com.danik.bookstore.dao.BookDAOImpl;
 import com.danik.bookstore.model.*;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import javax.servlet.http.*;
 import java.util.*;
 
 @Controller
 @RequestMapping("/books")
 public class BooksController {
-    BookDAOImpl bookDAO = new BookDAOImpl();
+//    BookDAOImpl bookDAO = new BookDAOImpl();
+
+    @Resource
+    BookDAO bookDAO;
 
     @GetMapping
     public String list(HttpServletRequest req) {
