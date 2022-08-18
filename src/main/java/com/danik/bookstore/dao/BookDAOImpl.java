@@ -10,14 +10,13 @@ public class BookDAOImpl implements BookDAO{
     @Override
     public List<BookWithAuthor> getBooksWithAuthors() {
         List<BookWithAuthor> result = new ArrayList<>();
+        String query = "select b.id, b.title, b.year, b.pages, a.id, a.name, a.birth_date, a.country_code from books b, authors a where a.id = b.author_id";
         DataSource ds = ConnectionFactory.getDataSource();
 
         try(Connection con = ds.getConnection();
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("select b.id, b.title, b.year, b.pages, a.id, a.name, a.birth_date, a.country_code\n" +
-                    "from books b, authors a\n" +
-                    "where a.id = b.author_id")
-            ){
+            ResultSet rs = st.executeQuery(query))
+        {
             while (rs.next()) {
                 //book
                 int bookId = rs.getInt(1);
@@ -49,13 +48,11 @@ public class BookDAOImpl implements BookDAO{
     @Override
     public List<BookWithAuthor> getBooksWithAuthors(String title) {
         List<BookWithAuthor> result = new ArrayList<>();
+        String query = "select b.id, b.title, b.year, b.pages, a.id, a.name, a.birth_date, a.country_code from books b, authors a where a.id = b.author_id and b.title like ?";
         DataSource ds = ConnectionFactory.getDataSource();
 
         try(Connection con = ds.getConnection();
-            PreparedStatement st = con.prepareStatement("select b.id, b.title, b.year, b.pages, a.id, a.name, a.birth_date, a.country_code\n" +
-                    "from books b, authors a\n" +
-                    "where a.id = b.author_id\n"+
-                    "and b.title like ?");
+            PreparedStatement st = con.prepareStatement(query);
         ){
             st.setString(1, "%"+title+"%");
 
@@ -93,8 +90,9 @@ public class BookDAOImpl implements BookDAO{
     @Override
     public void create(Book book) {
         DataSource ds = ConnectionFactory.getDataSource();
+        String query = "INSERT INTO books (title, year, pages, author_id) VALUES (?, ?, ?, ?)";
         try(Connection conn = ds.getConnection();
-            PreparedStatement ps = conn.prepareStatement("INSERT INTO books (title, year, pages, author_id) VALUES (?, ?, ?, ?)")
+            PreparedStatement ps = conn.prepareStatement(query)
         ){
             ps.setString(1, book.getTitle());
             ps.setInt(2, book.getYear());

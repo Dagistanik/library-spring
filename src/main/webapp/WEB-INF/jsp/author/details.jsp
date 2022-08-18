@@ -1,4 +1,3 @@
-javax.xml.stream.util.StreamReaderDelegate
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%--@elvariable id="author" type="com.danik.bookstore.model.Author"--%>

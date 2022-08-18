@@ -12,11 +12,10 @@ public class AuthorDAOImpl implements AuthorDAO{
     @Override
     public Author getById(int authorId) {
         DataSource ds = ConnectionFactory.getDataSource();
+        String query = "select a.id, a.name, a.birth_date, a.country_code from authors a where a.id = ?";
 
         try(Connection con = ds.getConnection();
-            PreparedStatement st = con.prepareStatement( "select a.id, a.name, a.birth_date, a.country_code\n" +
-                    "from authors a\n" +
-                    "where a.id = ?")
+            PreparedStatement st = con.prepareStatement( query)
         ){
             st.setInt(1, authorId);
             try (ResultSet rs = st.executeQuery()) {
@@ -33,7 +32,6 @@ public class AuthorDAOImpl implements AuthorDAO{
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         throw new NoSuchElementException("No author for id: "+authorId);
     }
 
