@@ -1,6 +1,5 @@
 package com.danik.bookstore.config;
 
-import com.danik.bookstore.dao.ConnectionFactory;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletContext;

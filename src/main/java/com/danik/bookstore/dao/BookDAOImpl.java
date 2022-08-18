@@ -1,5 +1,6 @@
 package com.danik.bookstore.dao;
 
+import com.danik.bookstore.config.ConnectionFactory;
 import com.danik.bookstore.model.*;
 
 import java.sql.*;
