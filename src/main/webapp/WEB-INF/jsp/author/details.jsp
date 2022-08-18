@@ -1,30 +1,39 @@
+javax.xml.stream.util.StreamReaderDelegate
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8"%>
-<%--@elvariable id="books" type="java.util.List<com.danik.bookstore.model.BookWithAuthor>"--%>
+<%--@elvariable id="author" type="com.danik.bookstore.model.Author"--%>
+<%--@elvariable id="books" type="java.util.List<com.danik.bookstore.model.Book>"--%>
 <html>
 <head>
     <title>Author</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
-<h3 class="text-red text-center">Author</h3>
+<h3 class="text-red text-center">
+    #${author.id} ${author.name}
+</h3>
+
+<div>
+    Birth Year: <c:if test="${author.birthDate!=null}">${author.birthDate.year}</c:if>
+</div>
+<div>
+    Country: ${author.countryCode}
+</div>
+
+<h4>Books:</h4>
 <div class="d-grid gap-2 col-8 mx-auto">
     <table class="table table-hover">
         <thead class="table-light">
         <tr>
-            <th scope="col">#</th>
-            <th scope="col">NAME</th>
-            <th scope="col">DATE</th>
-            <th scope="col">COUNTRY</th>
+            <th scope="col">ID</th>
+            <th scope="col">TITLE</th>
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${books}" var="bookWithAuthor">
+        <c:forEach items="${books}" var="book">
             <tr>
-                <th scope="row">${bookWithAuthor.author.id}</th>
-                <td>${bookWithAuthor.author.name}</td>
-                <td>${bookWithAuthor.author.birthDate}</td>
-                <td>${bookWithAuthor.author.countryCode}</td>
+                <th scope="row">${book.id}</th>
+                <td>${book.title}</td>
             </tr>
         </c:forEach>
         </tbody>

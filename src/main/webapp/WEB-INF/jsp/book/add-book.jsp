@@ -20,8 +20,8 @@
                     <input type="text" class="form-control" name="title" id="title"/>
                 </div>
                 <div class="mb-3">
-                    <label for="author" class="form-label">Author:</label>
-                    <input type="text" class="form-control" name="author" id="author"/>
+                    <label for="author_id" class="form-label">Author:</label>
+                    <input type="text" class="form-control" name="author_id" id="author_id"/>
                 </div>
                 <div class="mb-3">
                     <label for="year" class="form-label">Year:</label>

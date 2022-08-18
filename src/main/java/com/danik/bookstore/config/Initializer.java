@@ -17,6 +17,5 @@ public class Initializer implements ServletContextListener {
         connection = ConnectionFactory.getConnection();
         ctx.setAttribute("connection", connection);
         System.out.println("App initialized");
-
     }
 }

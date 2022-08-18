@@ -1,6 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8"%>
-<%--@elvariable id="books" type="java.util.List<com.danik.bookstore.model.BookWithAuthor>"--%>
 <html>
     <head>
         <title>Books</title>
@@ -10,7 +9,6 @@
         <h3 class="text-red text-center">Books</h3>
         <div class="d-grid gap-2 col-8 mx-auto">
             <div class="d-grid col-4 ">
-<%--                <form action="search" method="get">--%>
                 <form  method="get">
                     <div class="mb-3">
                         <label for="title" class="form-label">Search by title:</label>

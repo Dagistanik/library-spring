@@ -17,22 +17,20 @@ import java.util.List;
 @Controller
 @RequestMapping("/authors")
 public class AuthorsContrloler {
-    BookDAO bookDAO = new BookDAOImpl();
     AuthorDAO authorDAO = new AuthorDAOImpl();
-    //initialize
-    //   /authors/12345
+    BookDAO bookDAO = new BookDAOImpl();
+
     @GetMapping("/{authorId}")
     public String authInfo(
             HttpServletRequest req,
-            @PathVariable("authorId") String authorId)
+            @PathVariable("authorId") int authorId)
     {
         Author author = authorDAO.getById(authorId);
         req.setAttribute("author", author);
 
-//        List<Book>books = bookDAO.findByAuthor(authorId);
-//        req.setAttribute("books", books);
+        List<Book> books = bookDAO.getByAuthorId(authorId);
+        req.setAttribute("books", books);
 
         return "author-info";
     }
-
 }

@@ -1,8 +1,7 @@
 package com.danik.bookstore.controller;
 
 import com.danik.bookstore.dao.BookDAOImpl;
-import com.danik.bookstore.model.Book;
-import com.danik.bookstore.model.BookWithAuthor;
+import com.danik.bookstore.model.*;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -22,14 +21,19 @@ public class SqlBookController {
         return "book/view-books";
     }
 
-//    @PostMapping("/search")
-//    public String authInfo(
-//            @RequestParam(name = "title", required = true) String title,
-//            HttpServletRequest req) {
-//        List<Book> books = bookDAO.searchByTitle(title);
-//        req.setAttribute("books", books);
-//        return "book/search";
-//    }
+    @GetMapping(params = "title")
+    public String list(
+            @RequestParam(name = "title", required = true) String title,
+            HttpServletRequest req)
+    {
+        if (StringUtils.isBlank(title)){
+            return "redirect:/books";}
+        req.setAttribute("title", title);
+        List<BookWithAuthor> books = bookDAO.getBooksWithAuthors(title);
+        req.setAttribute("books", books);
+
+        return "book/view-books";
+    }
 
     @GetMapping("/add")
     public String addBookView() {
@@ -47,7 +51,7 @@ public class SqlBookController {
 
         bookDAO.create(new Book(id, title, author_id, year, pages));
 
-        return "redirect:list";
+        return "redirect:";
     }
 }
 
