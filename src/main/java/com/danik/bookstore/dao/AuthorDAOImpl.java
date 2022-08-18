@@ -16,7 +16,7 @@ public class AuthorDAOImpl implements AuthorDAO{
         String query = "select a.id, a.name, a.birth_date, a.country_code from authors a where a.id = ?";
 
         try(Connection con = ds.getConnection();
-            PreparedStatement st = con.prepareStatement( query)
+            PreparedStatement st = con.prepareStatement(query)
         ){
             st.setInt(1, authorId);
             try (ResultSet rs = st.executeQuery()) {

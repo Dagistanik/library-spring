@@ -3,6 +3,7 @@ package com.danik.bookstore.dao;
 import com.danik.bookstore.config.ConnectionFactory;
 import com.danik.bookstore.model.*;
 
+import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -107,6 +108,37 @@ public class BookDAOImpl implements BookDAO{
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public List<Book> getByAuthorId(int authorId) {
+        List<Book> result = new ArrayList<>();
+        String query = "select b.id, b.title, b.year, b.pages from books b where b.author_id = ?";
+        DataSource ds = ConnectionFactory.getDataSource();
+
+        try(Connection con = ds.getConnection();
+            PreparedStatement st = con.prepareStatement( query)
+        ){
+            st.setInt(1, authorId);
+
+            try (ResultSet rs = st.executeQuery()) {
+
+                while (rs.next()) {
+                    //book
+                    int bookId = rs.getInt(1);
+                    String bookTitle = rs.getString(2);
+                    int bookYear = rs.getInt(3);
+                    int bookPages = rs.getInt(4);
+
+                    Book book = new Book(bookId, bookTitle, authorId, bookYear, bookPages);
+
+                    result.add(book);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
 }

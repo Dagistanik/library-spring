@@ -49,7 +49,7 @@
                 <form action="add">
                     <input type="submit" class="btn btn-outline-success" value="Add new book">
                 </form>
-                <form action="/library">
+                <form action="/library/books">
                     <input type="submit" class="btn btn-outline-dark" value="Back">
                 </form>
             </div>

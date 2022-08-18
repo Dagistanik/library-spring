@@ -31,6 +31,6 @@ public class AuthorsContrloler {
         List<Book> books = bookDAO.getByAuthorId(authorId);
         req.setAttribute("books", books);
 
-        return "author-info";
+        return "author/details";
     }
 }

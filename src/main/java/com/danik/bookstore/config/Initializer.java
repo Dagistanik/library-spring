@@ -2,19 +2,20 @@ package com.danik.bookstore.config;
 
 import org.springframework.stereotype.Component;
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
-import java.sql.Connection;
+import javax.annotation.Resource;
+import javax.servlet.*;
+import javax.sql.DataSource;
 
 @Component
 public class Initializer implements ServletContextListener {
-    Connection connection;
+
+    @Resource
+    DataSource dataSource;
+
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        ServletContext ctx = sce.getServletContext();
-        connection = ConnectionFactory.getConnection();
-        ctx.setAttribute("connection", connection);
+        ConnectionFactory.setDataSource(dataSource);
+
         System.out.println("App initialized");
     }
 }

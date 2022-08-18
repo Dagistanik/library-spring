@@ -10,8 +10,8 @@ import javax.servlet.http.*;
 import java.util.*;
 
 @Controller
-@RequestMapping("/sqlbook")
-public class SqlBookController {
+@RequestMapping("/books")
+public class BooksController {
     BookDAOImpl bookDAO = new BookDAOImpl();
 
     @GetMapping
