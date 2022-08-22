@@ -46,7 +46,7 @@
         </div>
         <div class="d-grid gap-2 col-2 mx-auto">
             <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-                <form action="add">
+                <form action="/library/books/add">
                     <input type="submit" class="btn btn-outline-success" value="Add new book">
                 </form>
                 <form action="/library/books">

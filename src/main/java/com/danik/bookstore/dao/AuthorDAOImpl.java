@@ -1,7 +1,7 @@
 package com.danik.bookstore.dao;
 
-import com.danik.bookstore.config.ConnectionFactory;
 import com.danik.bookstore.model.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -26,7 +26,7 @@ public class AuthorDAOImpl implements AuthorDAO{
             st.setInt(1, authorId);
             try (ResultSet rs = st.executeQuery()) {
                 if (rs.next()) {
-                    //book
+                    //author
                     int id = rs.getInt(1);
                     String name = rs.getString(2);
                     Date birthDate = rs.getDate(3);
@@ -40,6 +40,5 @@ public class AuthorDAOImpl implements AuthorDAO{
         }
         throw new NoSuchElementException("No author for id: "+authorId);
     }
-
 }
 

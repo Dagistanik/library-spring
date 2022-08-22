@@ -1,24 +1,23 @@
 package com.danik.bookstore.controller;
 
-import com.danik.bookstore.dao.AuthorDAO;
-import com.danik.bookstore.dao.AuthorDAOImpl;
-import com.danik.bookstore.dao.BookDAO;
-import com.danik.bookstore.dao.BookDAOImpl;
-import com.danik.bookstore.model.Author;
-import com.danik.bookstore.model.Book;
+import com.danik.bookstore.dao.*;
+import com.danik.bookstore.model.*;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
 @RequestMapping("/authors")
 public class AuthorsContrloler {
-    AuthorDAO authorDAO = new AuthorDAOImpl();
-    BookDAO bookDAO = new BookDAOImpl();
+    @Resource
+    AuthorDAO authorDAO;
+    @Resource
+    BookDAO bookDAO;
+//    AuthorDAO authorDAO = new AuthorDAOImpl();
+//    BookDAO bookDAO = new BookDAOImpl();
 
     @GetMapping("/{authorId}")
     public String authInfo(

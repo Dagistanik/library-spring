@@ -1,6 +1,5 @@
 package com.danik.bookstore.config;
 
-import com.mysql.jdbc.Driver;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;

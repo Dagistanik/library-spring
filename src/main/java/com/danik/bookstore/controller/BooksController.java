@@ -1,7 +1,6 @@
 package com.danik.bookstore.controller;
 
 import com.danik.bookstore.dao.BookDAO;
-import com.danik.bookstore.dao.BookDAOImpl;
 import com.danik.bookstore.model.*;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;

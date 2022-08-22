@@ -2,20 +2,27 @@ package com.danik.bookstore.dao;
 
 import com.danik.bookstore.config.ConnectionFactory;
 import com.danik.bookstore.model.*;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class BookDAOImpl implements BookDAO{
+
+    @Resource
+    DataSource dataSource;
+
     @Override
     public List<BookWithAuthor> getBooksWithAuthors() {
         List<BookWithAuthor> result = new ArrayList<>();
         String query = "select b.id, b.title, b.year, b.pages, a.id, a.name, a.birth_date, a.country_code from books b, authors a where a.id = b.author_id";
-        DataSource ds = ConnectionFactory.getDataSource();
+//        DataSource ds = ConnectionFactory.getDataSource();
 
-        try(Connection con = ds.getConnection();
+        try(Connection con = dataSource.getConnection();
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(query))
         {
@@ -51,9 +58,9 @@ public class BookDAOImpl implements BookDAO{
     public List<BookWithAuthor> getBooksWithAuthors(String title) {
         List<BookWithAuthor> result = new ArrayList<>();
         String query = "select b.id, b.title, b.year, b.pages, a.id, a.name, a.birth_date, a.country_code from books b, authors a where a.id = b.author_id and b.title like ?";
-        DataSource ds = ConnectionFactory.getDataSource();
+//        DataSource ds = ConnectionFactory.getDataSource();
 
-        try(Connection con = ds.getConnection();
+        try(Connection con = dataSource.getConnection();
             PreparedStatement st = con.prepareStatement(query);
         ){
             st.setString(1, "%"+title+"%");
@@ -91,9 +98,9 @@ public class BookDAOImpl implements BookDAO{
 
     @Override
     public void create(Book book) {
-        DataSource ds = ConnectionFactory.getDataSource();
+//        DataSource ds = ConnectionFactory.getDataSource();
         String query = "INSERT INTO books (title, year, pages, author_id) VALUES (?, ?, ?, ?)";
-        try(Connection conn = ds.getConnection();
+        try(Connection conn = dataSource.getConnection();
             PreparedStatement ps = conn.prepareStatement(query)
         ){
             ps.setString(1, book.getTitle());
@@ -114,9 +121,9 @@ public class BookDAOImpl implements BookDAO{
     public List<Book> getByAuthorId(int authorId) {
         List<Book> result = new ArrayList<>();
         String query = "select b.id, b.title, b.year, b.pages from books b where b.author_id = ?";
-        DataSource ds = ConnectionFactory.getDataSource();
+//        DataSource ds = ConnectionFactory.getDataSource();
 
-        try(Connection con = ds.getConnection();
+        try(Connection con = dataSource.getConnection();
             PreparedStatement st = con.prepareStatement( query)
         ){
             st.setInt(1, authorId);
@@ -140,5 +147,4 @@ public class BookDAOImpl implements BookDAO{
         }
         return result;
     }
-
 }

@@ -1,24 +1,18 @@
 package com.danik.bookstore.controller;
 
 import com.danik.bookstore.dao.BookDAO;
-import com.danik.bookstore.model.Author;
-import com.danik.bookstore.model.Book;
-import com.danik.bookstore.model.BookWithAuthor;
+import com.danik.bookstore.model.*;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.*;
+import org.springframework.test.web.servlet.request.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 
 @SpringBootTest(
@@ -32,8 +26,8 @@ class BooksControllerTest {
     @MockBean
     BookDAO bookDAO;
 
-    @Resource
-    private BooksController controller;
+//    @Resource
+//    private BooksController controller;
 
     @Resource
     private MockMvc mvc;
