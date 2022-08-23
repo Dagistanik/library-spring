@@ -13,7 +13,6 @@ import java.util.*;
 @Controller
 @RequestMapping("/books")
 public class BooksController {
-//    BookDAOImpl bookDAO = new BookDAOImpl();
 
     @Resource
     BookDAO bookDAO;

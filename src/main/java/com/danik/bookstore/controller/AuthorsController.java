@@ -11,13 +11,11 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/authors")
-public class AuthorsContrloler {
+public class AuthorsController {
     @Resource
     AuthorDAO authorDAO;
     @Resource
     BookDAO bookDAO;
-//    AuthorDAO authorDAO = new AuthorDAOImpl();
-//    BookDAO bookDAO = new BookDAOImpl();
 
     @GetMapping("/{authorId}")
     public String authInfo(

@@ -4,10 +4,10 @@ import org.junit.jupiter.api.Test;
 
 public class HelloWorldTest {
 
-    @Test
-    public void testSomething(){
-         assert 1==2;
-    }
+//    @Test
+//    public void testSomething(){
+//         assert 1==2;
+//    }
 
 
     @Test
@@ -15,9 +15,8 @@ public class HelloWorldTest {
         assert 1==1;
     }
 
-    @Test
-    public void testException(){
-        throw new RuntimeException("Something bad happened!");
-    }
-
+//    @Test
+//    public void testException(){
+//        throw new RuntimeException("Something bad happened!");
+//    }
 }
