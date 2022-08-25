@@ -16,28 +16,18 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-@SpringBootTest(
-        classes = {
-                BooksController.class
-        }
-)
+import java.util.*;
+
+@SpringBootTest(classes = {BooksController.class})
 @AutoConfigureMockMvc
 class BooksControllerTest {
-
     @MockBean
     BookDAO bookDAO;
-
     @Resource
     private MockMvc mvc;
 
-
     @Test
-    public void testSomething() throws Exception {
-        //create test data
+    public void testView() throws Exception {
         Book book1 = new Book(1, "Война и мир", 1, 1840, 1000);
         Book book2 = new Book(2, "Bobi-verse", 2, 2017, 300);
         Author author1 = new Author(1, "Лев Толстой", new Date(1800, Calendar.FEBRUARY, 1), "RU");
@@ -46,18 +36,12 @@ class BooksControllerTest {
         BookWithAuthor bwa2 = new BookWithAuthor(book2, author2);
         List<BookWithAuthor> testData = Arrays.asList(bwa1, bwa2);
 
-//        emulate mock behavior
         Mockito.when(bookDAO.getBooksWithAuthors()).thenReturn(testData);
 
-
-        //create test request
         MockHttpServletRequestBuilder req = MockMvcRequestBuilders.get("/books");
 
-
-        //execute request in virtual browser
         MvcResult result = mvc.perform(req).andReturn();
 
-//        check results
         assert result.getResponse().getStatus() == HttpServletResponse.SC_OK;
 
         assert result.getModelAndView().getViewName() == "book/view-books";
@@ -118,5 +102,43 @@ class BooksControllerTest {
         assert result.getResponse().getRedirectedUrl().equals("/books");
 
         System.out.println("Tested!!!");
+    }
+
+    @Test
+    public void testAddBookFormIsShow() throws Exception {
+
+        MockHttpServletRequestBuilder req = MockMvcRequestBuilders.get("/books/add");
+
+        MvcResult result = mvc.perform(req).andReturn();
+
+        assert result.getResponse().getStatus() == HttpServletResponse.SC_OK;
+
+        assert result.getModelAndView().getViewName() == "book/add-book";
+
+    }
+    @Test
+    public void testBookIsAdded() throws Exception {
+        //create test data
+        Book testBook = new Book(123,"testTitle",1,99,101);
+
+        MockHttpServletRequestBuilder req = MockMvcRequestBuilders.post("/books/add")
+                .param("id", "123")
+                .param("title", "testTitle")
+                .param("author_id", "1")
+                .param("year", "99")
+                .param("pages", "101");
+
+        //execute
+        MvcResult result = mvc.perform(req).andReturn();
+
+        //verify
+
+        //make sure book is created in DB
+        Mockito.verify(bookDAO).create(ArgumentMatchers.eq(testBook));
+//        Mockito.verifyNoInteractions(bookDAO);
+        Mockito.verifyNoMoreInteractions(bookDAO);
+
+        //user is redirected to "/books" page
+        assert result.getResponse().getRedirectedUrl().equals("");
     }
 }
